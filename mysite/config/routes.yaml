@@ -1,0 +1,9 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+lucky_number:
+    path: /lucky/number
+    controller: App\Controller\LuckyController::lucky
+facts:
+    path: /facts
+    controller: App\Controller\FactsController::showRandomFact
