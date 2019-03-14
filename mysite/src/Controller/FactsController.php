@@ -9,19 +9,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class FactsController extends AbstractController {
 
     /**
+     * @var \PDO
+     */
+    private $pdo;
+
+    /**
+     * FactsController constructor.
+     * @param \PDO $pdo
+     */
+    public function __construct(\PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
+
+    /**
      * @Route("/facts")
      */
     public function showRandomFact()
     {
-        $db = new \PDO(
-                $this->getParameter('db_uri'), 
-                $this->getParameter('db_user'), 
-                $this->getParameter('db_password'));
-        
-        $result = $db->query('SELECT fact FROM facts ORDER BY RAND() LIMIT 1');
+        $result = $this->pdo->query('SELECT fact FROM facts ORDER BY RAND() LIMIT 1');
 
         $row = $result->fetch();
 
-        return new Response(var_export($row['fact'], true));
+        return new Response($row['fact']);
     }
 }
