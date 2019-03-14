@@ -5,9 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    db_uri: 'mysql:host=localhost;dbname=mysite'
-    db_user: root
-    db_password: 
+    db_uri: 'mysql:host=127.0.0.1;dbname=mysite'
+    db_user: 'root'
+    db_password: '1234'
 
 services:
     # default configuration for services in *this* file
