@@ -71,7 +71,18 @@ class UserController extends AbstractController {
         }
         
         $request->getSession()->set('email', $email);
+        $request->getSession()->set('userId', $user->getId());
         
-        return new Response("Welcome");
+        return $this->redirect('/tasks');
+    }
+    
+    /**
+     * @Route("/logout")
+     * @param Request $request
+     */
+    public function logout(Request $request) {
+        $request->getSession()->invalidate();
+        
+        return $this->redirect('/login');
     }
 }

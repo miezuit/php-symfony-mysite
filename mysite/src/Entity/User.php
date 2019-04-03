@@ -54,5 +54,9 @@ class User {
     public function hasPassword(string $password): bool {
         return password_verify($password, $this->hashedPassword);
     }
-
+    
+    public function getId(): int {
+        return $this->id;
+    }
+   
 }
