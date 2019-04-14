@@ -38,6 +38,7 @@ class UserController extends AbstractController {
     /**
      * @Route("/login")
      * @param Request $request
+     * @return Response
      */
     public function login(Request $request)
     {
@@ -79,6 +80,7 @@ class UserController extends AbstractController {
     /**
      * @Route("/logout")
      * @param Request $request
+     * @return Response
      */
     public function logout(Request $request) {
         $request->getSession()->invalidate();
