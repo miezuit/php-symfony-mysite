@@ -64,22 +64,6 @@ ul li.checked::before {
   width: 7px;
 }
 
-.edit {
-    position: absolute;
-    top: 0;
-    right: 40px;
-    padding: 12px 16px 12px 16px;
-}
-
-.edit:hover {
-  background-color: #f44336;
-  color: white;
-}
-
-.edit_form {
-    display: none;
-}
-
 /* Style the close button */
 .close {
   position: absolute;
@@ -153,13 +137,7 @@ form {
 <ul id="myUL">
     {% for task in tasks %}
         <li>{{ task.getName() }}
-            <span class="edit" onclick="document.getElementById('edit_task{{task.getId()}}').style.display = 'block'">&#9998;</span>
             <span class="close" onclick="document.getElementById('del_task{{task.getId()}}').submit()">&times;</span>
-            <form class="edit_form" id="edit_task{{ task.getId() }}" method="post" action="{{ path('update_task') }}">
-                <input type="hidden" name="taskId" value="{{ task.getId() }}">
-                <input type="text" name="taskName" value="{{ task.getName() }}">
-                <input type="submit" name="Send">
-            </form>
             <form id="del_task{{ task.getId() }}" method="post" action="{{ path('delete_task') }}">
                 <input type="hidden" name="taskId" value="{{ task.getId() }}">
             </form>

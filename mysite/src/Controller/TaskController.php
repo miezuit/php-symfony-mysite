@@ -68,29 +68,4 @@ class TaskController extends AbstractController {
         return $this->redirect('/tasks');
     }
     
-    /**
-     * @Route("/task_update", methods={"POST"}, name="update_task")
-     * @param Request $request
-     * @return Response
-     */
-    public function updateTask(Request $request)
-    {
-        $repo = $this->getDoctrine()->getRepository(Task::class);
-        
-        $task = $repo->findOneBy([
-            'id' => $request->request->get('taskId'),
-            'userId' => $request->getSession()->get('userId')
-        ]);
-        
-        if(!empty($task)) {
-            $task->updateName($request->request->get('taskName'));
-            
-            $em = $this->getDoctrine()->getManager();
-            
-            $em->flush();
-        }
-        
-        return $this->redirect('/tasks');
-    }
-    
 }
